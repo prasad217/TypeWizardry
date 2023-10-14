@@ -1,0 +1,66 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    background-color:#333333;;
+}
+h1{
+    color: white;
+    text-align: center;
+}
+
+#hey{
+    color: orange;
+}
+/* Additional CSS for image placement and styling */
+.heading-with-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading-with-image h2 {
+    font-size: 24px; /* Adjust the font size as needed */
+    margin-right: 10px; /* Adjust the spacing between heading and image */
+    color: #ffffff; /* Text color */
+}
+
+.heading-with-image img {
+    max-width: 100px; /* Adjust the image width as needed */
+    height: auto;
+    border-radius: 50%; /* Add border-radius for a circular image (optional) */
+}
+
+#random-sentence{
+    color:  grey;
+    text-align: center;
+    margin-top: 10%;
+    font-weight: bolder;
+    font-size: 26px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#countdown{
+    color: yellow;
+    font-weight: bold;
+    margin-top: 18%;
+
+}
+.animate{
+    background-color: red;
+}
+
+.correct {
+    color: green; /* Change to your desired correct color */
+  }
+  
+  .incorrect {
+    color: red; /* Change to your desired incorrect color */
+  }
+  /* Add this CSS to your stylesheet */
+.underline {
+    text-decoration: underline;
+    color: yellow;
+  }
+  
+  
