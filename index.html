@@ -1,38 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TypeWizardry</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/3943/3943850.png" type="image/x-icon">
-</head>
-<body>
-    <h1>Ready to Type?<span id="hey"> TypeWizardry Awaits 🚀 </span></h1>
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; /* Ensures padding and borders are included in the width/height calculations */
+}
 
-    <div class="heading-with-image">
-        <h2>Become a Typing Wizard</h2>
-        <img id="imf" src="wizard.png" alt="">
-    </div>
+html, body {
+    height: 100%; /* Full height for sticky footer */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+}
 
-    <p id="random-sentence"> <span id="sentence"></span></p>
+body {
+    background-color: #333;
+    color: #fff; /* Default text color for better contrast */
+    font-family: Arial, Helvetica, sans-serif;
+    flex: 1; /* Flex grow to take available space */
+}
 
-    <p id="countdown">Time: 0 minutes 0 seconds</p>
+h1 {
+    color: white;
+    text-align: center;
+}
 
-    <div id="wpmDisplay"></div>
-    <script src="index.js"></script>
-    <script src="wpm.js"></script>
+#hey {
+    color: orange;
+}
 
-    <footer>
-        <div class="footer-container">
-            <p>© 2024 All rights reserved.</p>
-            <img src="https://cdn-icons-png.flaticon.com/128/733/733553.png" alt="GitHub Logo">
-            <p>
-                <a href="https://github.com/prasad217" target="_blank" rel="noopener noreferrer">
-                    GitHub: prasad217
-                </a>
-            </p>
-        </div>
-    </footer>
-</body>
-</html>
+.heading-with-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Adds space between text and image */
+}
+
+.heading-with-image h2 {
+    font-size: 24px;
+    color: #fff;
+}
+
+.heading-with-image img {
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+}
+
+#random-sentence {
+    color: grey;
+    text-align: center;
+    margin-top: 5%;
+    font-size: 26px;
+}
+
+#countdown {
+    color: yellow;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2%; /* Reduced margin for better layout */
+}
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
+    text-decoration: line-through; /* Adds a strikethrough effect */
+}
+
+.underline {
+    text-decoration: underline;
+    text-decoration-color: yellow; /* Ensures the underline is yellow */
+}
+
+.footer-container {
+    background-color: #333; /* Footer background */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 400px; /* Push footer to the bottom */
+}
+
+.footer-container img {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+}
+
+.footer-container p, .footer-container a {
+    font-size: 12px;
+    margin: 5px;
+    color: white;
+}
+
+.footer-container a {
+    color: yellow;
+    text-decoration: none;
+}
+
+.footer-container a:hover {
+    text-decoration: underline;
+}
+
