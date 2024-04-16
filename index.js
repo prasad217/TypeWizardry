@@ -1,55 +1,36 @@
-                  function getQueryParam(name) {
-                    const urlParams = new URLSearchParams(window.location.search);
-                    return urlParams.get(name);
-                  }
-                  
-                  const jsFileParam = getQueryParam("jsfile");
-                  
-                  if (jsFileParam !== null) {
-                    const scriptElement = document.createElement("script");
-                    scriptElement.src = jsFileParam;
-                    document.body.appendChild(scriptElement);
-                  }
-                  
-                  const timeParam = getQueryParam("time");
-                  const lengthParam = getQueryParam("length");
-                  
-                  if (timeParam !== null && lengthParam !== null) {
-                    const initialTimeInSeconds = parseFloat(timeParam);
-                    const sentenceLength = parseInt(lengthParam);
-                  
-                    console.log(`Initial Time Taken: ${initialTimeInSeconds} seconds`);
-                    console.log(`Sentence Length: ${sentenceLength}`);
-                  
-                    timeleft = initialTimeInSeconds;
-                    document.getElementById("countdown").innerHTML = formatTime(timeleft);
-                  }
-                  
-                  var timeleft = 0;
-                  var downloadTimer;
-                  var currentCharacterIndex = 0;
-                  
-                  function startTimer() {
-                    timeleft = 0;
-                    clearInterval(downloadTimer);
-                  
-                    downloadTimer = setInterval(function () {
-                      timeleft += 1;
-                      document.getElementById("countdown").innerHTML = formatTime(timeleft);
-                    }, 1000);
-                  }
-                  
-                  function formatTime(seconds) {
-                    var minutes = Math.floor(seconds / 60);
-                    var remainingSeconds = seconds % 60;
-                    return minutes.toFixed(0) + "." + (remainingSeconds < 10 ? "0" : "") + remainingSeconds.toFixed(0) + " minutes";
-                  }
-                  
-                  function restartTimer() {
-                    clearInterval(downloadTimer);
-                    document.body.removeEventListener("keydown", restartTimer);
-                    startTimer();
-                  }
+// Check for query parameters and initialize variables
+function getQueryParam(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
+
+// Initialize time and length from URL parameters, or set defaults
+var initialTimeInSeconds = parseFloat(getQueryParam("time")) || 60; // Default to 60 seconds if not specified
+var sentenceLength = parseInt(getQueryParam("length")) || 5; // Default to 5 if not specified
+
+// Timer variables
+var timeleft = initialTimeInSeconds;
+var downloadTimer;
+var currentCharacterIndex = 0;
+
+// Start or restart the timer
+function startTimer() {
+  timeleft = initialTimeInSeconds;
+  clearInterval(downloadTimer);
+
+  downloadTimer = setInterval(function() {
+      timeleft -= 1;
+      document.getElementById("countdown").innerHTML = formatTime(timeleft);
+      if (timeleft <= 0) clearInterval(downloadTimer);
+  }, 1000);
+}
+
+// Format time for display
+function formatTime(seconds) {
+  var minutes = Math.floor(seconds / 60);
+  var remainingSeconds = seconds % 60;
+  return `${minutes} minutes ${remainingSeconds} seconds`;
+}
                   
                   const sentences = [
                     "Mistakes are part of the learning process; don't be discouraged by errors but see them as     stepping stones toward typing proficiency.",
@@ -164,96 +145,86 @@
                         "A meadow filled with wildflowers is a vibrant tapestry woven by nature's hand.",
                         "The call of a distant owl in the night is a reminder of the mysteries that nature holds.",
                         "A tranquil pond reflects the beauty of the surrounding landscape, doubling the wonder."];
-                        for (let i = 0; i < sentences.length; i++) {
-                          sentences[i] = sentences[i].toLowerCase();
-                        }
-                        
-                        function getRandomSentence() {
-                          const randomIndex = Math.floor(Math.random() * sentences.length);
-                          return sentences[randomIndex];
-                        }
-                        
-                        function updateSentence() {
-                          const randomSentenceElement = document.getElementById("sentence");
-                          const sentence = getRandomSentence();
-                          randomSentenceElement.textContent = sentence;
-                        
-                          randomSentenceElement.innerHTML = "";
-                        
-                          for (const char of sentence) {
-                            const charElement = document.createElement("span");
-                            charElement.textContent = char;
-                            randomSentenceElement.appendChild(charElement);
-                          }
-                        
-                          currentCharacterIndex = 0;
-                          underlineCurrentCharacter();
-                        }
-                        
-                        function underlineCurrentCharacter() {
-                          const sentenceElement = document.getElementById("sentence");
-                          const sentenceCharacters = sentenceElement.querySelectorAll("span");
-                        
-                          if (currentCharacterIndex < sentenceCharacters.length) {
-                            sentenceCharacters[currentCharacterIndex].classList.add("underline");
-                          }
-                        }
-                        
-                        function removeUnderlineFromCurrentCharacter() {
-                          const sentenceElement = document.getElementById("sentence");
-                          const sentenceCharacters = sentenceElement.querySelectorAll("span");
-                        
-                          if (currentCharacterIndex < sentenceCharacters.length) {
-                            sentenceCharacters[currentCharacterIndex].classList.remove("underline");
-                          }
-                        }
-                        
-                        function handleKeypress(event) {
-                          const sentenceElement = document.getElementById("sentence");
-                          const sentenceCharacters = sentenceElement.querySelectorAll("span");
-                        
-                          if (currentCharacterIndex < sentenceCharacters.length) {
-                            removeUnderlineFromCurrentCharacter();
-                        
-                            const currentCharacter = sentenceCharacters[currentCharacterIndex];
-                        
-                            if (event.key === currentCharacter.textContent) {
-                              currentCharacter.classList.add("correct");
-                              var audio = new Audio("sounds/correct.mp3");
-                              audio.play();
-                              currentCharacterIndex++;
-                        
-                              if (currentCharacterIndex === sentenceCharacters.length) {
-                                const timeTakenInSeconds = initialTimeInSeconds - timeleft;
-                                const wordsTyped = sentence.length / 5;
-                                const wpm = (wordsTyped / (timeTakenInSeconds / 60)).toFixed(2);
-                        
-                                alert(`Sentence typing completed!\nWPM: ${wpm}\nTime taken: ${formatTime(timeTakenInSeconds)}`);
-                        
-                                setTimeout(() => {
-                                  updateSentence();
-                                  clearInterval(downloadTimer);
-                                  startTimer();
-                                }, 1000);
-                              }
-                            } else {
-                              var audio1 = new Audio("sounds/wrong.mp3");
-                              audio1.play();
-                              currentCharacter.classList.add("incorrect");
-                              setTimeout(() => {
-                                currentCharacter.classList.remove("incorrect");
-                              }, 200);
-                            }
-                        
-                            underlineCurrentCharacter();
-                          }
-                        }
-                        
-                        document.addEventListener("keydown", handleKeypress);
-                        
-                        updateSentence();
-                        
-                        startTimer();
-                        
-                        
-                  
+                        // Randomly select a sentence
+// Randomly select a sentence
+function getRandomSentence() {
+  const randomIndex = Math.floor(Math.random() * sentences.length);
+  return sentences[randomIndex];
+}
+
+// Display the selected sentence and prepare for typing
+function updateSentence() {
+  const randomSentenceElement = document.getElementById("sentence");
+  const sentence = getRandomSentence().toLowerCase(); // Convert to lowercase for uniformity
+  randomSentenceElement.textContent = '';
+
+  // Create span for each character in the sentence
+  sentence.split('').forEach(char => {
+      const charElement = document.createElement("span");
+      charElement.textContent = char;
+      randomSentenceElement.appendChild(charElement);
+  });
+
+  currentCharacterIndex = 0;
+  underlineCurrentCharacter();
+}
+
+// Underline the current character to type
+function underlineCurrentCharacter() {
+  const sentenceCharacters = document.getElementById("sentence").querySelectorAll("span");
+  if (currentCharacterIndex < sentenceCharacters.length) {
+      sentenceCharacters[currentCharacterIndex].classList.add("underline");
+  }
+}
+
+// Handle keypresses for typing
+function handleKeypress(event) {
+  const sentenceCharacters = document.getElementById("sentence").querySelectorAll("span");
+  if (currentCharacterIndex < sentenceCharacters.length) {
+      const currentCharacter = sentenceCharacters[currentCharacterIndex];
+
+      removeUnderlineFromCurrentCharacter();  // Remove underline from the current character
+
+      if (event.key === currentCharacter.textContent) {
+          currentCharacter.classList.add("correct");
+          playSound("sounds/correct.mp3");
+      } else {
+          currentCharacter.classList.add("incorrect");
+          playSound("sounds/wrong.mp3");
+      }
+
+      currentCharacterIndex++;  // Move to the next character regardless of correctness
+
+      if (currentCharacterIndex < sentenceCharacters.length) {
+          underlineCurrentCharacter();  // Underline the next character
+      } else {
+          // All characters have been typed
+          const timeTakenInSeconds = initialTimeInSeconds - timeleft;
+          const wordsTyped = document.getElementById("sentence").textContent.trim().split(/\s+/).length;
+          const wpm = (wordsTyped / (timeTakenInSeconds / 60)).toFixed(2);
+          console.log(`Redirecting to results.html with WPM: ${wpm} and Time: ${formatTime(timeTakenInSeconds)}`);
+          window.location.href = `results.html?wpm=${wpm}&time=${formatTime(timeTakenInSeconds)}`;
+      }
+  }
+}
+
+function removeUnderlineFromCurrentCharacter() {
+  const sentenceCharacters = document.getElementById("sentence").querySelectorAll("span");
+  sentenceCharacters.forEach(char => {
+      char.classList.remove("underline");
+  });
+}
+
+
+// Function to play sound
+function playSound(soundPath) {
+  var audio = new Audio(soundPath);
+  audio.play();
+}
+
+// Add event listener for keydown
+document.addEventListener("keydown", handleKeypress);
+
+// Initial setup
+updateSentence();
+startTimer();

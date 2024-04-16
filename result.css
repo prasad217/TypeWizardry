@@ -1,0 +1,92 @@
+/* Body and global settings */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    color: #333;
+    display: flex;
+    flex-direction: column; /* To push footer to the bottom */
+    align-items: center;
+    justify-content: flex-start; /* Align content to the top */
+    min-height: 100vh; /* Full viewport height */
+    margin: 0;
+}
+
+/* Results container styling */
+.results-container {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+}
+
+.result {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+.result label {
+    font-weight: bold;
+    color: #555;
+}
+
+.result span {
+    font-weight: normal;
+    color: #666;
+}
+
+/* Button styling */
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Footer styling */
+.footer-container {
+    background-color: #333; /* Footer background */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensure full width */
+    margin-top: 400px;;
+}
+
+.footer-container img {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+}
+
+.footer-container p, .footer-container a {
+    font-size: 12px;
+    margin: 5px;
+    color: white;
+}
+
+.footer-container a {
+    color: yellow;
+    text-decoration: none;
+}
+
+.footer-container a:hover {
+    text-decoration: underline;
+}

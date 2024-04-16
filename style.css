@@ -1,66 +1,106 @@
-*{
-    padding: 0px;
-    margin: 0px;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; /* Ensures padding and borders are included in the width/height calculations */
 }
-body{
-    background-color:#333333;;
+
+html, body {
+    height: 100%; /* Full height for sticky footer */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
 }
-h1{
+
+body {
+    background-color: #333;
+    color: #fff; /* Default text color for better contrast */
+    font-family: Arial, Helvetica, sans-serif;
+    flex: 1; /* Flex grow to take available space */
+}
+
+h1 {
     color: white;
     text-align: center;
 }
 
-#hey{
+#hey {
     color: orange;
 }
-/* Additional CSS for image placement and styling */
+
 .heading-with-image {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 20px; /* Adds space between text and image */
 }
 
 .heading-with-image h2 {
-    font-size: 24px; /* Adjust the font size as needed */
-    margin-right: 10px; /* Adjust the spacing between heading and image */
-    color: #ffffff; /* Text color */
+    font-size: 24px;
+    color: #fff;
 }
 
 .heading-with-image img {
-    max-width: 100px; /* Adjust the image width as needed */
+    width: 100px;
     height: auto;
-    border-radius: 50%; /* Add border-radius for a circular image (optional) */
+    border-radius: 50%;
 }
 
-#random-sentence{
-    color:  grey;
+#random-sentence {
+    color: grey;
     text-align: center;
-    margin-top: 10%;
-    font-weight: bolder;
+    margin-top: 5%;
     font-size: 26px;
-    font-family: Arial, Helvetica, sans-serif;
 }
-#countdown{
+
+#countdown {
     color: yellow;
     font-weight: bold;
-    margin-top: 18%;
-
-}
-.animate{
-    background-color: red;
+    text-align: center;
+    margin-top: 2%; /* Reduced margin for better layout */
 }
 
 .correct {
-    color: green; /* Change to your desired correct color */
-  }
-  
-  .incorrect {
-    color: red; /* Change to your desired incorrect color */
-  }
-  /* Add this CSS to your stylesheet */
+    color: green;
+}
+
+.incorrect {
+    color: red;
+    text-decoration: line-through; /* Adds a strikethrough effect */
+}
+
 .underline {
     text-decoration: underline;
+    text-decoration-color: yellow; /* Ensures the underline is yellow */
+}
+
+.footer-container {
+    background-color: #333; /* Footer background */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 400px; /* Push footer to the bottom */
+}
+
+.footer-container img {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+}
+
+.footer-container p, .footer-container a {
+    font-size: 12px;
+    margin: 5px;
+    color: white;
+}
+
+.footer-container a {
     color: yellow;
-  }
-  
-  
+    text-decoration: none;
+}
+
+.footer-container a:hover {
+    text-decoration: underline;
+}
+

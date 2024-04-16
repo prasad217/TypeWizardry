@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test Results</title>
+    <link rel="stylesheet" href="result.css">
+</head>
+<body>
+    <div class="results-container">
+        <h1>Your Typing Test Results</h1>
+        <div class="result">
+            <label>Words Per Minute (WPM):</label>
+            <span id="wpm"></span>
+        </div>
+        <div class="result">
+            <label>Time Taken:</label>
+            <span id="timeTaken"></span>
+        </div>
+        <button onclick="window.location.href='index.html';">Try Again</button>
+    </div>
+
+    <script>
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        document.getElementById("wpm").innerText = getQueryParam("wpm") || 'N/A';
+        document.getElementById("timeTaken").innerText = getQueryParam("time") || 'Not available';
+    </script>
+</body>
+<footer>
+    <div class="footer-container">
+        <p>© 2024 All rights reserved.</p>
+        <img src="https://cdn-icons-png.flaticon.com/128/733/733553.png" alt="GitHub Logo">
+        <p>
+            <a href="https://github.com/prasad217" target="_blank" rel="noopener noreferrer">
+                GitHub: prasad217
+            </a>
+        </p>
+    </div>
+</footer>
+
+</html>
